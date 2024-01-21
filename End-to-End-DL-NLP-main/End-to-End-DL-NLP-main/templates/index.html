@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        #bottom {
+            width: 450px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding-left: 500px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1 class="heading">EMOTIONAL ANALAYASIS</h1>
+    
+    <form method="post" action="/">
+        <textarea placeholder="Enter your text" id="input_text" class="input" name="input_text" rows="2" cols="60" required></textarea><br>
+        <input type="submit" value="Predict" class="button">
+    </form>
+
+    {% if result %}
+    <div id="bottom">
+        <div>
+            <h4>Your Feedback:{{ result['input_text'] }}</h4>
+        </div>
+        <div>
+            <h4>Emotion prediction:{{result['prediction'] }}</h4>
+        </div>
+        <br>
+        <button class="try-again"><a href="/">Try Another</a></button>
+    </div>
+    <script>
+        function updateTextLengthDisplay() {
+            var inputText = document.getElementById('input_text').value;
+            var textLength = inputText.length;
+            document.getElementById('text_length').innerText = textLength;
+        }
+    </script>
+    {% endif %}
+</div>
+</body>
+</html>
